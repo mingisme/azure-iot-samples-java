@@ -17,7 +17,7 @@ public class BackEndApplication {
 
   // Connection string for your IoT Hub
   // az iot hub show-connection-string --hub-name {your iot hub name} --policy-name service
-  public static final String iotHubConnectionString = "{Your service connection string here}";
+  public static final String iotHubConnectionString = "";
 
   // Device to call direct method on.
   public static final String deviceId = "MyJavaDevice";

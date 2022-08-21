@@ -6,16 +6,16 @@
 
 package com.microsoft.docs.iothub.samples;
 
-import com.microsoft.azure.sdk.iot.device.*;
 import com.google.gson.Gson;
+import com.microsoft.azure.sdk.iot.device.*;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Random;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class SimulatedDevice {
+public class SimulatedDevice1 {
   // The device connection string to authenticate the device with your IoT hub.
   // Using the Azure CLI:
   // az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyJavaDevice --output table
@@ -93,21 +93,32 @@ public class SimulatedDevice {
     }
   }
 
+  private static class AppMessageCallback implements MessageCallback {
+    public IotHubMessageResult execute(Message msg, Object context) {
+      System.out.println("Received message from hub: "
+              + new String(msg.getBytes(), Message.DEFAULT_IOTHUB_MESSAGE_CHARSET));
+
+      return IotHubMessageResult.COMPLETE;
+    }
+  }
+
   public static void main(String[] args) throws IOException, URISyntaxException {
 
     // Connect to the IoT hub.
     client = new DeviceClient(connString, protocol);
+    MessageCallback callback = new AppMessageCallback();
+    client.setMessageCallback(callback, null);
     client.open();
 
     // Create new thread and start sending messages 
-    MessageSender sender = new MessageSender();
-    ExecutorService executor = Executors.newFixedThreadPool(1);
-    executor.execute(sender);
+//    MessageSender sender = new MessageSender();
+//    ExecutorService executor = Executors.newFixedThreadPool(1);
+//    executor.execute(sender);
 
     // Stop the application.
     System.out.println("Press ENTER to exit.");
     System.in.read();
-    executor.shutdownNow();
+//    executor.shutdownNow();
     client.closeNow();
   }
 }

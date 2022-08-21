@@ -25,13 +25,13 @@ public class ReadDeviceToCloudMessages {
       + "SharedAccessKeyName=%s;SharedAccessKey=%s";
 
   // az iot hub show --query properties.eventHubEndpoints.events.endpoint --name {your IoT Hub name}
-  private static final String EVENT_HUBS_COMPATIBLE_ENDPOINT = "{your Event Hubs compatible endpoint}";
+  private static final String EVENT_HUBS_COMPATIBLE_ENDPOINT = "sb://iothub-ns-swangiothu-20986047-4f32afd60a.servicebus.windows.net/";
 
   // az iot hub show --query properties.eventHubEndpoints.events.path --name {your IoT Hub name}
-  private static final String EVENT_HUBS_COMPATIBLE_PATH = "{your Event Hubs compatible name}";
+  private static final String EVENT_HUBS_COMPATIBLE_PATH = "swangiothub1";
 
   // az iot hub policy show --name service --query primaryKey --hub-name {your IoT Hub name}
-  private static final String IOT_HUB_SAS_KEY = "{your service primary key}";
+  private static final String IOT_HUB_SAS_KEY = "";
   private static final String IOT_HUB_SAS_KEY_NAME = "service";
 
   /**
