@@ -4,6 +4,10 @@ import com.azure.messaging.eventhubs.checkpointstore.blob.BlobCheckpointStore;
 import com.azure.messaging.eventhubs.models.*;
 import com.azure.storage.blob.*;
 import java.util.function.Consumer;
+
+/**
+ * Test
+ */
 public class ReadEventHubEvents {
     private static final String connectionString = "";
     private static final String eventHubName = "swangeventhub";
